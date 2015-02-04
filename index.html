@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html ng-app="guestList">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="bower_components/lodash/lodash.min.js"></script>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="app.js"></script>
+
+    <script src="js/controllers/MainCtrl.js"></script>
+
+    <script src="js/directives/guest/guest.js"></script>
+
+    <script src="js/services/guestsManager.js"></script>
+    <script src="js/services/transportService.js"></script>
+    <script src="js/services/syncService.js"></script>
+
+</head>
+<body ng-controller="MainCtrl">
+<div class="col-xs-12">
+    <h1>Список гостей</h1>
+</div>
+
+<div class="col-xs-4 {{column.class}}" ng-repeat="column in columns">
+    <div ng-repeat="guest in guests | filter : {inHall: column.inHall}" guest="guest" on-update="guestUpdate" on-remove="guestRemove"></div>
+</div>
+
+<div class="col-xs-4">
+    <h2>Новый гость</h2>
+
+    <div class="item">
+        <form role="form" ng-submit="submitData()">
+            <div class="form-group">
+                <label for="name">Имя гостя</label>
+                <input type="text" id="name" class="form-control" name="name" ng-model="name" placeholder="Имя гостя"/>
+            </div>
+            <button type="submit" id="addGuest" class="btn btn-default">Добавить</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,8 @@
+<div class="item" ng-click="moveToHall()">
+    <div class="delete" ng-if="!guest.inHall">
+        <a ng-click="remove()" class="btn btn-danger" href="#" role="button">
+            <span class="glyphicon glyphicon-remove"></span>
+        </a>
+    </div>
+    {{guest.name}}
+</div>
